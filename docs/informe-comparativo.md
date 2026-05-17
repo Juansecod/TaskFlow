@@ -91,13 +91,15 @@
 
 **⚠️ Advertencia de accesibilidad documentada:**
 
-| Elemento | Contraste real | Umbral WCAG AA | Estado |
-|---|---|---|---|
-| Texto muted (#8fa0b2 / #e8edf2) | ~2.8:1 | 4.5:1 | ❌ Falla |
-| Texto secundario (#6c7a8d / #e8edf2) | ~3.6:1 | 4.5:1 | ❌ Falla |
-| Texto principal (#3d4a5c / #e8edf2) | ~6.2:1 | 4.5:1 | ✅ Pasa |
-| Badge alta (#c0392b / #e8edf2) | ~5.1:1 | 4.5:1 | ✅ Pasa |
-| Estado de checkbox activo (✓ blanco / azul) | ~4.8:1 | 4.5:1 | ✅ Pasa |
+| Elemento | Contraste real | Umbral WCAG AA | Estado | Fuente |
+|---|---|---|---|---|
+| Texto muted (#8fa0b2 / #e8edf2) | **2.27:1** | 4.5:1 | ❌ Falla | Estimado |
+| Texto secundario (#6c7a8d / #e8edf2) | **3.7:1** | 4.5:1 | ❌ Falla | ✅ Medido — WebAIM |
+| Texto principal (#3d4a5c / #e8edf2) | **7.64:1** | 4.5:1 | ✅ Pasa | Estimado |
+| Badge alta (#c0392b / #e8edf2) | **4.61:1** | 4.5:1 | ✅ Pasa | Estimado |
+| Estado de checkbox activo (✓ blanco / azul) | ~4.8:1 | 4.5:1 | ✅ Pasa | Estimado |
+
+> **Dato medido con WebAIM Contrast Checker** ([webaim.org/resources/contrastchecker](https://webaim.org/resources/contrastchecker/))
 
 ---
 
@@ -150,12 +152,13 @@
 | TTI (s) | ~1.4 | ~1.1 | ~1.0 |
 | Performance Score | ~92 | ~95 | ~97 |
 | Accessibility Score | ~96 | ~78 | ~94 |
-| Líneas de CSS | ~420 | ~480 | ~520 |
-| Peso CSS (KB) | ~8.2 | ~9.6 | ~11.4 |
-| Peso total página (KB) | ~180* | ~140 | ~160* |
-| Contraste mínimo (WCAG) | 4.8:1 | 2.8:1 ⚠️ | 5.0:1 |
+| Líneas de CSS | **762** ✅ | **756** ✅ | **872** ✅ |
+| Peso CSS (KB) | ~22.4 | ~22.5 | ~28.7 |
+| Peso total página (KB) | ~200* | ~160 | ~185* |
+| Contraste mínimo (WCAG) | ~4.8:1 | **3.7:1 ❌** | ~5.0:1 |
 
-*\*Incluye fuentes de Google Fonts cargadas por CDN. Material carga Roboto + Symbols. Dark Mode carga DM Sans + DM Mono.*
+*\*Incluye fuentes de Google Fonts (CDN). Material: Roboto. Dark Mode: DM Sans + DM Mono.*
+*Líneas de CSS medidas con `wc -l` sobre `tokens.css + base.css` por variante (dato real).*
 
 ---
 
