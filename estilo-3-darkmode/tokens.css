@@ -1,0 +1,218 @@
+/**
+ * TaskFlow — Design Tokens — Dark Mode Adaptativo
+ * Estilo 3 / Grupo Experimental
+ * Referencia: https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme
+ *
+ * Sistema de tokens duales: las mismas propiedades custom cambian de valor
+ * según el contexto de color del sistema operativo del usuario.
+ *
+ * PRINCIPIO TÉCNICO:
+ * Los tokens de color están definidos en dos bloques:
+ *   1. :root              → Modo claro (fallback)
+ *   2. @media (dark)      → Modo oscuro (override automático)
+ * El botón de toggle JS añade [data-theme="dark/light"] al <html>
+ * para override manual, superior al media query.
+ *
+ * Paleta: calibrada en HSL para mantener contraste WCAG AA en ambos modos.
+ * Fuentes: DM Sans (Google Fonts) — moderna, legible, sin serifas.
+ *
+ * NOTA: prefers-reduced-motion también es respetado en base.css.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap');
+
+/* ═══════════════════════════════════════════════════════════
+   MODO CLARO — valores por defecto
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  color-scheme: light dark;
+
+  /* Acento principal — violeta eléctrico */
+  --dm-accent-hue:         258;
+  --dm-accent-sat:         94%;
+
+  --dm-accent:             hsl(var(--dm-accent-hue), var(--dm-accent-sat), 48%);
+  --dm-accent-hover:       hsl(var(--dm-accent-hue), var(--dm-accent-sat), 42%);
+  --dm-accent-light:       hsl(var(--dm-accent-hue), 60%, 94%);
+  --dm-accent-on:          #ffffff;
+
+  /* Superficies */
+  --dm-bg:                 hsl(220, 20%, 97%);
+  --dm-surface:            hsl(0, 0%, 100%);
+  --dm-surface-alt:        hsl(220, 16%, 94%);
+  --dm-surface-raised:     hsl(0, 0%, 100%);
+
+  /* Texto */
+  --dm-text:               hsl(220, 25%, 12%);
+  --dm-text-secondary:     hsl(220, 12%, 40%);
+  --dm-text-muted:         hsl(220, 10%, 60%);
+
+  /* Bordes */
+  --dm-border:             hsl(220, 14%, 86%);
+  --dm-border-strong:      hsl(220, 14%, 74%);
+
+  /* Sombras (modo claro) */
+  --dm-shadow-sm:
+    0 1px 3px hsla(220, 25%, 12%, 0.08),
+    0 1px 2px hsla(220, 25%, 12%, 0.06);
+  --dm-shadow-md:
+    0 4px 12px hsla(220, 25%, 12%, 0.10),
+    0 2px 4px hsla(220, 25%, 12%, 0.06);
+
+  /* Prioridades */
+  --dm-alta:               hsl(4, 90%, 44%);
+  --dm-media:              hsl(30, 90%, 40%);
+  --dm-baja:               hsl(142, 60%, 32%);
+
+  --dm-alta-bg:            hsl(4, 90%, 96%);
+  --dm-media-bg:           hsl(30, 90%, 96%);
+  --dm-baja-bg:            hsl(142, 60%, 96%);
+
+  /* Proyectos */
+  --color-project-a:       hsl(var(--dm-accent-hue), 80%, 52%);
+  --color-project-b:       hsl(200, 80%, 44%);
+  --color-project-c:       hsl(16, 90%, 48%);
+
+  /* ─── TIPOGRAFÍA ─────────────────────────────────────────────────────── */
+  --dm-font-display:  'DM Sans', sans-serif;
+  --dm-font-body:     'DM Sans', sans-serif;
+  --dm-font-mono:     'DM Mono', monospace;
+
+  --dm-size-2xl:    2rem;
+  --dm-size-xl:     1.5rem;
+  --dm-size-lg:     1.125rem;
+  --dm-size-md:     1rem;
+  --dm-size-sm:     0.875rem;
+  --dm-size-xs:     0.75rem;
+
+  /* ─── BORDER RADIUS ───────────────────────────────────────────────────── */
+  --dm-radius-xs:   4px;
+  --dm-radius-sm:   8px;
+  --dm-radius-md:   12px;
+  --dm-radius-lg:   16px;
+  --dm-radius-xl:   20px;
+  --dm-radius-full: 9999px;
+
+  /* ─── MOTION ─────────────────────────────────────────────────────────── */
+  --dm-duration-fast:   120ms;
+  --dm-duration-normal: 220ms;
+  --dm-duration-slow:   380ms;
+  --dm-easing:          cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ─── ALIAS PARA base.css ────────────────────────────────────────────── */
+  --color-bg:              var(--dm-bg);
+  --color-surface:         var(--dm-surface);
+  --color-surface-alt:     var(--dm-surface-alt);
+  --color-primary:         var(--dm-accent);
+  --color-primary-light:   var(--dm-accent-light);
+  --color-on-primary:      var(--dm-accent-on);
+  --color-text:            var(--dm-text);
+  --color-text-secondary:  var(--dm-text-secondary);
+  --color-border:          var(--dm-border);
+  --color-error:           var(--dm-alta);
+
+  --color-priority-alta:   var(--dm-alta);
+  --color-priority-media:  var(--dm-media);
+  --color-priority-baja:   var(--dm-baja);
+
+  --radius-sm:    var(--dm-radius-sm);
+  --radius-md:    var(--dm-radius-md);
+  --radius-lg:    var(--dm-radius-lg);
+  --radius-full:  var(--dm-radius-full);
+
+  --shadow-card:   var(--dm-shadow-sm);
+  --shadow-raised: var(--dm-shadow-md);
+
+  --font-display: var(--dm-font-display);
+  --font-body:    var(--dm-font-body);
+
+  --sidebar-width: 260px;
+  --topbar-height: 64px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MODO OSCURO — override automático via OS
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --dm-bg:                 hsl(222, 22%, 10%);
+    --dm-surface:            hsl(222, 20%, 14%);
+    --dm-surface-alt:        hsl(222, 18%, 18%);
+    --dm-surface-raised:     hsl(222, 20%, 17%);
+
+    --dm-text:               hsl(220, 20%, 92%);
+    --dm-text-secondary:     hsl(220, 12%, 62%);
+    --dm-text-muted:         hsl(220, 10%, 44%);
+
+    --dm-border:             hsl(222, 16%, 22%);
+    --dm-border-strong:      hsl(222, 14%, 30%);
+
+    --dm-accent:             hsl(var(--dm-accent-hue), 80%, 64%);
+    --dm-accent-hover:       hsl(var(--dm-accent-hue), 80%, 70%);
+    --dm-accent-light:       hsl(var(--dm-accent-hue), 30%, 18%);
+
+    --dm-shadow-sm:
+      0 1px 3px hsla(0, 0%, 0%, 0.35),
+      0 1px 2px hsla(0, 0%, 0%, 0.20);
+    --dm-shadow-md:
+      0 4px 16px hsla(0, 0%, 0%, 0.45),
+      0 2px 6px hsla(0, 0%, 0%, 0.25);
+
+    --dm-alta:               hsl(4, 85%, 68%);
+    --dm-media:              hsl(30, 90%, 60%);
+    --dm-baja:               hsl(142, 56%, 54%);
+
+    --dm-alta-bg:            hsl(4, 60%, 14%);
+    --dm-media-bg:           hsl(30, 60%, 14%);
+    --dm-baja-bg:            hsl(142, 40%, 12%);
+
+    --color-project-a:       hsl(var(--dm-accent-hue), 70%, 68%);
+    --color-project-b:       hsl(200, 70%, 58%);
+    --color-project-c:       hsl(16, 80%, 60%);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OVERRIDE MANUAL — data-theme forzado por JS
+   ═══════════════════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --dm-bg:                 hsl(222, 22%, 10%);
+  --dm-surface:            hsl(222, 20%, 14%);
+  --dm-surface-alt:        hsl(222, 18%, 18%);
+  --dm-surface-raised:     hsl(222, 20%, 17%);
+
+  --dm-text:               hsl(220, 20%, 92%);
+  --dm-text-secondary:     hsl(220, 12%, 62%);
+  --dm-text-muted:         hsl(220, 10%, 44%);
+
+  --dm-border:             hsl(222, 16%, 22%);
+  --dm-border-strong:      hsl(222, 14%, 30%);
+
+  --dm-accent:             hsl(var(--dm-accent-hue), 80%, 64%);
+  --dm-accent-hover:       hsl(var(--dm-accent-hue), 80%, 70%);
+  --dm-accent-light:       hsl(var(--dm-accent-hue), 30%, 18%);
+
+  --dm-shadow-sm:
+    0 1px 3px hsla(0, 0%, 0%, 0.35),
+    0 1px 2px hsla(0, 0%, 0%, 0.20);
+  --dm-shadow-md:
+    0 4px 16px hsla(0, 0%, 0%, 0.45),
+    0 2px 6px hsla(0, 0%, 0%, 0.25);
+
+  --dm-alta:               hsl(4, 85%, 68%);
+  --dm-media:              hsl(30, 90%, 60%);
+  --dm-baja:               hsl(142, 56%, 54%);
+
+  --dm-alta-bg:            hsl(4, 60%, 14%);
+  --dm-media-bg:           hsl(30, 60%, 14%);
+  --dm-baja-bg:            hsl(142, 40%, 12%);
+
+  --color-project-a:       hsl(var(--dm-accent-hue), 70%, 68%);
+  --color-project-b:       hsl(200, 70%, 58%);
+  --color-project-c:       hsl(16, 80%, 60%);
+}
+
+[data-theme="light"] {
+  /* Fuerza modo claro aunque el OS esté en dark */
+  color-scheme: light;
+}

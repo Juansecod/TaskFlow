@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow ✦ - Una Idea. Tres Estilos.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .card-badge {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #666;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .card-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .card-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .docs-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            animation: slideUp 0.6s ease-out 0.4s both;
+        }
+
+        .docs-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .docs-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .docs-link {
+            display: inline-block;
+            background: #f5f5f5;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .docs-link:hover {
+            background: #e8e8ff;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TaskFlow ✦</h1>
+            <p class="subtitle">Una Idea. Tres Estilos. Un Producto.</p>
+            <p class="description">
+                App de gestión de tareas implementada con tres corrientes de diseño distintas,
+                compartiendo la misma arquitectura: HTML semántico + BEM + CSS Custom Properties.
+            </p>
+        </header>
+
+        <div class="grid">
+            <a href="./estilo-1-material/" class="card">
+                <div class="card-icon">🎨</div>
+                <h2 class="card-title">Material Design 3</h2>
+                <p class="card-description">
+                    Diseño clásico y pulido. Elevación semántica, paleta tonal y componentes iconográficos de Material Design.
+                </p>
+                <span class="card-badge">Clásico</span>
+                <span class="card-link">Ver Versión →</span>
+            </a>
+
+            <a href="./estilo-2-neumorfismo/" class="card">
+                <div class="card-icon">💫</div>
+                <h2 class="card-title">Neumorfismo</h2>
+                <p class="card-description">
+                    Soft UI contemporáneo. Doble sombra extruida del fondo, efectos suaves y formas redondeadas.
+                </p>
+                <span class="card-badge">Contemporáneo</span>
+                <span class="card-link">Ver Versión →</span>
+            </a>
+
+            <a href="./estilo-3-darkmode/" class="card">
+                <div class="card-icon">🌙</div>
+                <h2 class="card-title">Dark Mode Adaptativo</h2>
+                <p class="card-description">
+                    Experimental y moderno. Tokens duales calibrados en HSL con transición de tema automática y manual.
+                </p>
+                <span class="card-badge">Experimental</span>
+                <span class="card-link">Ver Versión →</span>
+            </a>
+        </div>
+
+        <div class="docs-section">
+            <h2>📚 Documentación</h2>
+            <p style="color: #666; margin-bottom: 20px;">
+                Consulta los análisis técnicos y comparativas del proyecto
+            </p>
+            <div class="docs-links">
+                <a href="./docs/research-brief.md" class="docs-link">📋 Research Brief</a>
+                <a href="./docs/informe-comparativo.md" class="docs-link">📊 Informe Comparativo</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>Trabajo Final — Diseño de Experiencias de Usuario | 2026</p>
+        </footer>
+    </div>
+</body>
+</html>

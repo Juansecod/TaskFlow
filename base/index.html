@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow — BASE (estructura compartida)</title>
+  <!-- NOTA: Este archivo es la rama base. Cada variante de estilo
+       redefine únicamente los design tokens (custom properties CSS)
+       sin cambiar una sola línea de HTML o lógica JS. -->
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="base.css" />
+</head>
+<body>
+  <!-- =============================================
+       APP SHELL
+  ============================================== -->
+  <div class="app">
+
+    <!-- NAVEGACIÓN LATERAL (nav semántico) -->
+    <nav class="sidebar" aria-label="Navegación principal">
+      <div class="sidebar__brand">
+        <span class="sidebar__logo" aria-hidden="true">✦</span>
+        <span class="sidebar__name">TaskFlow</span>
+      </div>
+
+      <ul class="sidebar__menu" role="list">
+        <li class="sidebar__item sidebar__item--active">
+          <a href="#" class="sidebar__link" aria-current="page">
+            <span class="sidebar__icon" aria-hidden="true">◈</span>
+            <span class="sidebar__label">Hoy</span>
+            <span class="sidebar__badge" aria-label="4 tareas">4</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a href="#" class="sidebar__link">
+            <span class="sidebar__icon" aria-hidden="true">◷</span>
+            <span class="sidebar__label">Esta semana</span>
+            <span class="sidebar__badge" aria-label="12 tareas">12</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a href="#" class="sidebar__link">
+            <span class="sidebar__icon" aria-hidden="true">▦</span>
+            <span class="sidebar__label">Proyectos</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a href="#" class="sidebar__link">
+            <span class="sidebar__icon" aria-hidden="true">◉</span>
+            <span class="sidebar__label">Etiquetas</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar__projects">
+        <h2 class="sidebar__section-title">Proyectos</h2>
+        <ul class="sidebar__project-list" role="list">
+          <li class="sidebar__project">
+            <span class="sidebar__project-dot" style="--dot-color: var(--color-project-a)"></span>
+            <span>Tesis de grado</span>
+          </li>
+          <li class="sidebar__project">
+            <span class="sidebar__project-dot" style="--dot-color: var(--color-project-b)"></span>
+            <span>Trabajo UI/UX</span>
+          </li>
+          <li class="sidebar__project">
+            <span class="sidebar__project-dot" style="--dot-color: var(--color-project-c)"></span>
+            <span>Kubernetes Lab</span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-layout">
+
+      <!-- HEADER / TOP BAR -->
+      <header class="topbar" role="banner">
+        <div class="topbar__left">
+          <h1 class="topbar__title">Hoy</h1>
+          <span class="topbar__date" aria-label="Fecha actual">Sábado, 17 de mayo</span>
+        </div>
+        <div class="topbar__right">
+          <div class="topbar__search" role="search">
+            <label for="search-input" class="sr-only">Buscar tareas</label>
+            <input
+              id="search-input"
+              class="topbar__search-input"
+              type="search"
+              placeholder="Buscar tareas..."
+              aria-label="Buscar tareas"
+            />
+          </div>
+          <button class="topbar__avatar" aria-label="Perfil de usuario" type="button">
+            <span aria-hidden="true">JS</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- ÁREA PRINCIPAL DE CONTENIDO -->
+      <main class="main-content" id="main-content">
+
+        <!-- FORMULARIO DE CREACIÓN DE TAREA -->
+        <section class="task-form-section" aria-label="Crear nueva tarea">
+          <div class="task-form">
+            <div class="task-form__input-group">
+              <label for="new-task-input" class="sr-only">Nueva tarea</label>
+              <input
+                id="new-task-input"
+                class="task-form__input"
+                type="text"
+                placeholder="Añadir una tarea nueva..."
+                aria-label="Título de la nueva tarea"
+              />
+            </div>
+            <div class="task-form__controls">
+              <div class="task-form__selectors">
+                <label for="priority-select" class="sr-only">Prioridad</label>
+                <select id="priority-select" class="task-form__select" aria-label="Prioridad de la tarea">
+                  <option value="alta">Alta prioridad</option>
+                  <option value="media" selected>Media prioridad</option>
+                  <option value="baja">Baja prioridad</option>
+                </select>
+
+                <label for="date-input" class="sr-only">Fecha límite</label>
+                <input
+                  id="date-input"
+                  class="task-form__date"
+                  type="date"
+                  aria-label="Fecha límite"
+                />
+              </div>
+              <button class="task-form__submit btn btn--primary" type="button" id="add-task-btn">
+                + Añadir tarea
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- LISTA DE TAREAS -->
+        <section class="task-list-section" aria-label="Lista de tareas de hoy">
+          <div class="task-filters" role="group" aria-label="Filtros de tareas">
+            <button class="task-filters__chip task-filters__chip--active" type="button" aria-pressed="true">Todas</button>
+            <button class="task-filters__chip" type="button" aria-pressed="false">Pendientes</button>
+            <button class="task-filters__chip" type="button" aria-pressed="false">Completadas</button>
+          </div>
+
+          <ul class="task-list" id="task-list" role="list" aria-label="Tareas de hoy">
+
+            <!-- TAREA: ALTA PRIORIDAD -->
+            <li class="task-card task-card--priority-alta" data-task-id="1">
+              <article>
+                <div class="task-card__left">
+                  <label class="task-card__checkbox-label" aria-label="Marcar como completada: Entregar informe de benchmark">
+                    <input class="task-card__checkbox" type="checkbox" />
+                    <span class="task-card__checkbox-visual" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="task-card__body">
+                  <h3 class="task-card__title">Entregar informe de benchmark</h3>
+                  <div class="task-card__meta">
+                    <span class="task-card__badge task-card__badge--alta" aria-label="Prioridad alta">Alta</span>
+                    <span class="task-card__project">Trabajo UI/UX</span>
+                    <time class="task-card__date" datetime="2025-05-18">18 may</time>
+                  </div>
+                </div>
+                <div class="task-card__right">
+                  <button class="task-card__menu-btn" type="button" aria-label="Opciones de la tarea" aria-haspopup="true">⋯</button>
+                </div>
+              </article>
+            </li>
+
+            <!-- TAREA: MEDIA PRIORIDAD -->
+            <li class="task-card task-card--priority-media" data-task-id="2">
+              <article>
+                <div class="task-card__left">
+                  <label class="task-card__checkbox-label" aria-label="Marcar como completada: Revisar documentación de Velero">
+                    <input class="task-card__checkbox" type="checkbox" />
+                    <span class="task-card__checkbox-visual" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="task-card__body">
+                  <h3 class="task-card__title">Revisar documentación de Velero</h3>
+                  <div class="task-card__meta">
+                    <span class="task-card__badge task-card__badge--media" aria-label="Prioridad media">Media</span>
+                    <span class="task-card__project">Kubernetes Lab</span>
+                    <time class="task-card__date" datetime="2025-05-20">20 may</time>
+                  </div>
+                </div>
+                <div class="task-card__right">
+                  <button class="task-card__menu-btn" type="button" aria-label="Opciones de la tarea" aria-haspopup="true">⋯</button>
+                </div>
+              </article>
+            </li>
+
+            <!-- TAREA: BAJA PRIORIDAD, COMPLETADA -->
+            <li class="task-card task-card--priority-baja task-card--completed" data-task-id="3">
+              <article>
+                <div class="task-card__left">
+                  <label class="task-card__checkbox-label" aria-label="Completada: Leer capítulo de Atomic Design">
+                    <input class="task-card__checkbox" type="checkbox" checked />
+                    <span class="task-card__checkbox-visual" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="task-card__body">
+                  <h3 class="task-card__title">Leer capítulo de Atomic Design</h3>
+                  <div class="task-card__meta">
+                    <span class="task-card__badge task-card__badge--baja" aria-label="Prioridad baja">Baja</span>
+                    <span class="task-card__project">Trabajo UI/UX</span>
+                    <time class="task-card__date" datetime="2025-05-17">Hoy</time>
+                  </div>
+                </div>
+                <div class="task-card__right">
+                  <button class="task-card__menu-btn" type="button" aria-label="Opciones de la tarea" aria-haspopup="true">⋯</button>
+                </div>
+              </article>
+            </li>
+
+            <!-- TAREA: ALTA PRIORIDAD -->
+            <li class="task-card task-card--priority-alta" data-task-id="4">
+              <article>
+                <div class="task-card__left">
+                  <label class="task-card__checkbox-label" aria-label="Marcar como completada: Configurar pipeline Azure DevOps">
+                    <input class="task-card__checkbox" type="checkbox" />
+                    <span class="task-card__checkbox-visual" aria-hidden="true"></span>
+                  </label>
+                </div>
+                <div class="task-card__body">
+                  <h3 class="task-card__title">Configurar pipeline Azure DevOps</h3>
+                  <div class="task-card__meta">
+                    <span class="task-card__badge task-card__badge--alta" aria-label="Prioridad alta">Alta</span>
+                    <span class="task-card__project">Kubernetes Lab</span>
+                    <time class="task-card__date" datetime="2025-05-17">Hoy</time>
+                  </div>
+                </div>
+                <div class="task-card__right">
+                  <button class="task-card__menu-btn" type="button" aria-label="Opciones de la tarea" aria-haspopup="true">⋯</button>
+                </div>
+              </article>
+            </li>
+
+          </ul>
+        </section>
+
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="app-footer" role="contentinfo">
+        <div class="app-footer__stats">
+          <span class="app-footer__stat">
+            <strong id="completed-count">1</strong> de <strong id="total-count">4</strong> tareas completadas hoy
+          </span>
+          <div class="app-footer__progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso de tareas">
+            <div class="app-footer__progress-bar" style="width: 25%"></div>
+          </div>
+        </div>
+        <nav class="app-footer__nav" aria-label="Navegación secundaria">
+          <a href="#" class="app-footer__link">Configuración</a>
+          <a href="#" class="app-footer__link">Ayuda</a>
+          <a href="#" class="app-footer__link">Atajos</a>
+        </nav>
+      </footer>
+
+    </div><!-- /.main-layout -->
+  </div><!-- /.app -->
+
+  <!-- Texto visible sólo para lectores de pantalla -->
+  <span class="sr-only" aria-live="polite" id="sr-announcer"></span>
+
+  <script src="app.js"></script>
+</body>
+</html>

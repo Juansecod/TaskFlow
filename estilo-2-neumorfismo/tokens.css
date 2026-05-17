@@ -1,0 +1,121 @@
+/**
+ * TaskFlow — Design Tokens — Neumorfismo / Soft UI
+ * Estilo 2 / Grupo Contemporáneo
+ * Referencia: https://css-tricks.com/neumorphism-and-css/
+ *
+ * Sistema de doble sombra (clara + oscura) extruida del fondo.
+ * La clave técnica: el fondo de los componentes es IDÉNTICO al fondo
+ * del contenedor. La ilusión de relieve viene sólo de las sombras.
+ *
+ * ADVERTENCIA DE ACCESIBILIDAD:
+ * Este estilo presenta contraste reducido por diseño deliberado.
+ * Contraste mínimo en elementos decorativos puede caer por debajo
+ * de WCAG AA (4.5:1). Se documenta en el informe comparativo.
+ *
+ * Fuentes: Nunito (Google Fonts) — redondeada, coherente con la estética
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+
+:root {
+  /* ─── COLOR BASE — todo el sistema pivota aquí ──────────────────────── */
+  --neu-bg:          #e8edf2;   /* Fondo principal — mismo que superficie */
+  --neu-surface:     #e8edf2;   /* Superficies de componentes (= bg) */
+
+  /* Sombras duales: clara arriba-izquierda, oscura abajo-derecha */
+  --neu-shadow-light:  #ffffff;
+  --neu-shadow-dark:   #c5cdd8;
+
+  /* ─── SOMBRAS EXTRUIDAS (presión / elevación) ────────────────────────── */
+  /* Elevado — el elemento sobresale */
+  --neu-raised:
+    6px 6px 14px var(--neu-shadow-dark),
+    -6px -6px 14px var(--neu-shadow-light);
+
+  /* Hundido — el elemento está presionado */
+  --neu-inset:
+    inset 4px 4px 10px var(--neu-shadow-dark),
+    inset -4px -4px 10px var(--neu-shadow-light);
+
+  /* Tarjeta grande — más pronunciada */
+  --neu-card:
+    8px 8px 20px var(--neu-shadow-dark),
+    -8px -8px 20px var(--neu-shadow-light);
+
+  /* Flat — sin relieve (base antes de interacción) */
+  --neu-flat:
+    3px 3px 8px var(--neu-shadow-dark),
+    -3px -3px 8px var(--neu-shadow-light);
+
+  /* ─── PALETA DE COLOR (suave, de bajo contraste intencional) ─────────── */
+  --neu-primary:        #6c8ebf;   /* Azul suave */
+  --neu-primary-light:  #7fa3d4;
+  --neu-primary-dark:   #5272a6;
+  --neu-on-primary:     #ffffff;
+
+  --neu-text:           #3d4a5c;   /* Texto principal */
+  --neu-text-secondary: #6c7a8d;   /* Texto secundario (contraste reducido) */
+  --neu-text-muted:     #8fa0b2;   /* Texto atenuado */
+
+  --neu-border:         #d8e0ea;   /* Borde sutil */
+
+  /* Prioridades */
+  --neu-alta:   #c0392b;
+  --neu-media:  #d46b08;
+  --neu-baja:   #2e7d32;
+
+  /* Proyectos */
+  --color-project-a: #7c4dff;
+  --color-project-b: #6c8ebf;
+  --color-project-c: #e64a19;
+
+  /* ─── TIPOGRAFÍA ─────────────────────────────────────────────────────── */
+  --neu-font:         'Nunito', sans-serif;
+  --neu-size-xl:      1.75rem;
+  --neu-size-lg:      1.25rem;
+  --neu-size-md:      1rem;
+  --neu-size-sm:      0.875rem;
+  --neu-size-xs:      0.75rem;
+
+  /* ─── BORDER RADIUS (redondeado es parte de la estética) ─────────────── */
+  --neu-radius-sm:    10px;
+  --neu-radius-md:    18px;
+  --neu-radius-lg:    24px;
+  --neu-radius-xl:    32px;
+  --neu-radius-full:  9999px;
+
+  /* ─── MOTION ─────────────────────────────────────────────────────────── */
+  --neu-duration-fast:   150ms;
+  --neu-duration-normal: 250ms;
+  --neu-easing:          cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* ─── ALIAS PARA base.css ────────────────────────────────────────────── */
+  --color-bg:              var(--neu-bg);
+  --color-surface:         var(--neu-surface);
+  --color-surface-alt:     var(--neu-bg);
+  --color-primary:         var(--neu-primary);
+  --color-primary-light:   var(--neu-primary-light);
+  --color-on-primary:      var(--neu-on-primary);
+  --color-text:            var(--neu-text);
+  --color-text-secondary:  var(--neu-text-secondary);
+  --color-border:          var(--neu-border);
+  --color-error:           #c0392b;
+
+  --color-priority-alta:   var(--neu-alta);
+  --color-priority-media:  var(--neu-media);
+  --color-priority-baja:   var(--neu-baja);
+
+  --radius-sm:    var(--neu-radius-sm);
+  --radius-md:    var(--neu-radius-md);
+  --radius-lg:    var(--neu-radius-lg);
+  --radius-full:  var(--neu-radius-full);
+
+  --shadow-card:   var(--neu-flat);
+  --shadow-raised: var(--neu-raised);
+
+  --font-display: var(--neu-font);
+  --font-body:    var(--neu-font);
+
+  --sidebar-width: 260px;
+  --topbar-height: 70px;
+}
