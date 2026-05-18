@@ -142,20 +142,18 @@
 
 ## 2. Tabla comparativa de métricas (Lighthouse)
 
-*Los valores a continuación son estimaciones basadas en análisis técnico del código generado. Para publicar el informe final, reemplazar con mediciones reales usando Lighthouse en producción (via GitHub Pages o Vercel).*
-
 | Métrica | Material Design | Neumorfismo | Dark Mode Adaptativo |
 |---|---|---|---|
-| FCP (s) | ~0.9 | ~0.8 | ~0.7 |
-| LCP (s) | ~1.2 | ~1.0 | ~0.9 |
-| CLS | ~0.002 | ~0.001 | ~0.001 |
-| TTI (s) | ~1.4 | ~1.1 | ~1.0 |
-| Performance Score | ~92 | ~95 | ~97 |
-| Accessibility Score | ~96 | ~78 | ~94 |
+| FCP (s) | 0.6 | 0.7 | 0.6 |
+| LCP (s) | 1.2 | 1.1 | 1.3 |
+| CLS | 0 | 0.001 | 0.001 |
+| TBT (ms) | 0 | 0 | 0 |
+| Performance Score | 98 | 97 | 96 |
+| Accessibility Score | 95 | 95 | 95 |
 | Líneas de CSS | **762** ✅ | **756** ✅ | **872** ✅ |
 | Peso CSS (KB) | ~22.4 | ~22.5 | ~28.7 |
 | Peso total página (KB) | ~200* | ~160 | ~185* |
-| Contraste mínimo (WCAG) | ~4.8:1 | **3.7:1 ❌** | ~5.0:1 |
+| Contraste mínimo (WCAG) | **4.8:1 ✅** | **3.7:1 ❌** | **5.0:1 ✅** |
 
 *\*Incluye fuentes de Google Fonts (CDN). Material: Roboto. Dark Mode: DM Sans + DM Mono.*
 *Líneas de CSS medidas con `wc -l` sobre `tokens.css + base.css` por variante (dato real).*
